@@ -26,12 +26,23 @@ dummyList = Array.new(60) do
         numberGenerator.rand(100)
     end
   end
+
+  # Add all loads to compute how much % is one % load
+  loadSum = 0
+  cores.each { |core| loadSum = loadSum + core }
+  percentLoad = 100.0/loadSum
+
   # every 10 load percent one heatpoint
   i = 0
   Array.new(10) do
-    amount = cores.select { |core| core >= i and core < (i+10)}.length
+    # get all cores in the certain percentage
+    selectedCores= cores.select { |core| core >= i and core < (i+10)}
+    # (go to next level here)
     i = i + 10
-    amount
+    # add the load of the resulting cores and multiply it with the overall value
+    loadSum = 0
+    selectedCores.each { |core| loadSum = loadSum + core }
+    percent = loadSum*percentLoad
   end
 end
 
@@ -47,7 +58,7 @@ dummyList.each do |point|
     # draw a red rectangle on the white background
     core = Draw.new
 
-    l = (255-((cores*7.96875))).round
+    l = (255-((cores*1.275))).round
     core.fill(Pixel.from_hsla(0, 255, l, 1).to_color)
     core.rectangle((i*15), (j*15), ((i+1)*15), ((j+1)*15))
     core.draw loadImg
