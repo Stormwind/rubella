@@ -8,21 +8,18 @@ numberGenerator = Random.new()
 # heatmap over 5 minutes by one measure per 5 sec
 dummyList = Array.new(60) do
   # 16 dummy cores
-  # lets say 7 cores have a load up to 10%
-  # 5 have a load up to 30%
-  # 3 have a load up to 70%
-  # and 1 has a load up to 100%
+  # lets say 10 cores have a load up to 10%
+  # 4 have a load up to 30%
+  # and 2 have a load up to 100%
   j = 0
   cores = Array.new(16) do
     j = j + 1
     case
-      when j <= 7
+      when j <= 10
         numberGenerator.rand(10)
-      when (j >= 8 and j <= 12)
+      when (j >= 11 and j <= 14)
         numberGenerator.rand(30)
-      when (j >= 13 and j <= 15)
-        numberGenerator.rand(70)
-      when j == 16
+      when (j >= 15 and j <= 16)
         numberGenerator.rand(100)
     end
   end
