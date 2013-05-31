@@ -43,7 +43,7 @@ loadImg = Image.new(900,150) { self.background_color = "white" }
 i = 0
 dummyList.each do |point|
   j = 0
-  point.each do |cores|
+  point.reverse.each do |cores|
     # draw a red rectangle on the white background
     core = Draw.new
 
