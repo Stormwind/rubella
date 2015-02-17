@@ -1,5 +1,5 @@
 module Rubella
-  module Weigthing
+  module Weighting
 
     # Gets an input object and prepares the data for the output.
     #
