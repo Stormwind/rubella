@@ -7,21 +7,33 @@ module Rubella
 
     def initialize(input_name, output_name, weighting_name)
 
+      # set the input type
       @input = case input_name
+        # add the option to set input later
+        when nil then
+          nil
         when "json" then
           self.input_json
         else
           raise NotImplementedError, "Not supported input type "+input_name+" given"
       end
 
+      # set the output type
       @output = case output_name
+        # add the option to set the output later
+        when nil then
+        nil
         when "image" then
           self.output_image
         else
           raise NotImplementedError, "Not supported output type "+output_name+" given"
       end
 
+      # set the weighting
       @weighting = case weighting_name
+        # add the option to set the weighting later
+        when nil then
+          nil
         when "per_value" then
           self.weighting_per_value
         when "per_overall_load" then
