@@ -56,7 +56,8 @@ module Rubella
 
     def process inpt
       weight = @weighting.new 10
-      weight.parse inpt
+      outpt    = @output.new
+      outpt.create weight.parse(inpt)
     end
 
     def input_json
