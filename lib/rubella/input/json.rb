@@ -10,7 +10,7 @@ module Rubella
       attr_reader :data
 
       def initialize(json_string)
-        data = ::JSON::load(json_string)
+        @data = ::JSON::load(json_string)
       end
 
       def self.string(json_string)
