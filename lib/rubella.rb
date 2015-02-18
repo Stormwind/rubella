@@ -46,6 +46,14 @@ module Rubella
 
     end
 
+    def create_from_string data
+      @input.string data
+    end
+
+    def create_from_file file_name
+      @input.file file_name
+    end
+
     def input_json
       require "rubella/input/json"
       Input::JSON
