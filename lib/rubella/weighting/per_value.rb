@@ -12,7 +12,8 @@ module Rubella
         self.buckets = buckets
       end
 
-      def parse(data)
+      def parse input
+        data = input.data
         # no data, no work
         return [] if data.length == 0
 
@@ -29,7 +30,7 @@ module Rubella
           data_list << Array.new(buckets) do
             amount = cores.select { |core| core >= i and core < (i+@steps)}.length
             i = i + @steps
-            amount/total_amount
+            amount.to_f/total_amount
           end
         end
 
@@ -42,7 +43,7 @@ module Rubella
           raise ArgumentError, "Amount of buckets must be 1, 2, 5, 10, 20 or 50"
         end
         
-        @steps   = buckets/100
+        @steps   = 100/buckets
         @buckets = buckets
       end
 

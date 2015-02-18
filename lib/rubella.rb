@@ -47,11 +47,16 @@ module Rubella
     end
 
     def create_from_string data
-      @input.string data
+      process @input.string data
     end
 
     def create_from_file file_name
-      @input.file file_name
+      process @input.file file_name
+    end
+
+    def process inpt
+      weight = @weighting.new 10
+      weight.parse inpt
     end
 
     def input_json
