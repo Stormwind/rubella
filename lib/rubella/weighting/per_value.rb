@@ -2,21 +2,49 @@ module Rubella
   module Weighting
 
     # Gets an input object and prepares the data for the output.
-    #
-    # This class weights the input data per value.
-    # Which means, that all values together make 100%. So you need all values at
-    # the same level, to get the maximum color intensity.
-    #
-    # The output is an Array which contains again an Array per every point of
-    # time, which contains the load in the given steps (default is 10% per step)
-    # and the value in percentage for the representative olor intensity.
-    #
     class PerValue
+      attr_reader :buckets
+      # : steps
 
-      def initialize
+
+      # buckets must be one of 1, 2, 5, 10, 20, 50 default is 10
+      def initialize(buckets = 10)
+        self.buckets = buckets
       end
 
+      def parse(data)
+        # no data, no work
+        return [] if data.length == 0
+
+        # total amount of cores
+        total_amount = data[0].length
+        # TODO check somewhere, if every dataset has the same amount of cores
+
+        # prepare data
+        data_list = Array.new()
+
+        data.each do |cores|
+          # every 10 load percent one heatpoint
+          i = 0
+          data_list << Array.new(buckets) do
+            amount = cores.select { |core| core >= i and core < (i+@steps)}.length
+            i = i + @steps
+            amount/total_amount
+          end
+        end
+
+        data_list
+      end
       
+      def buckets= buckets
+        # Must be divideable by 100
+        if([1, 2, 5, 10, 20, 50].index(buckets) == nil)
+          raise ArgumentError, "Amount of buckets must be 1, 2, 5, 10, 20 or 50"
+        end
+        
+        @steps   = buckets/100
+        @buckets = buckets
+      end
 
     end
 
