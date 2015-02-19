@@ -72,16 +72,26 @@ module Rubella
     # @param string Name of the input type in CamelCase
     def input_by_name input_name
       # Remove the input, if someone wants to do this
-      if input_name == nil or input_name == ""
-        @input = nil
-        return
+      @input = load_by_name "Input", input_name
+    end
+
+    # Loads and returns the given class
+    #
+    # @param module_name string The Name of the module in CamelCase
+    # @param class_name string The Name of the class in CamelCase
+    # @return Class
+    # @raise NotImplementedError
+    def load_by_name module_name, class_name
+      # Remove the class, if someone wants to do this
+      if class_name == nil or class_name == ""
+        return nil
       end
 
       # Try to load the given class
-      require "rubella/input/"+input_name.downcase
+      require "rubella/"+module_name.downcase+"/"+class_name.downcase
 
       # Try to get a class by the given name
-      @input = Object.const_get("Rubella").const_get("Input").const_get(input_name)
+      return Object.const_get("Rubella").const_get(module_name).const_get(class_name)
 
       # TODO raise this error, if input class is not found
       # raise NotImplementedError, "Not supported input type "+input_name+" given"
