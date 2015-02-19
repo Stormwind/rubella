@@ -11,16 +11,8 @@ module Rubella
       input_by_name input_name
 
       # set the output type
-      @output = case output_name
-        # add the option to set the output later
-        when nil then
-        nil
-        when "image" then
-          self.output_image
-        else
-          raise NotImplementedError, "Not supported output type "+output_name+" given"
-      end
-
+      output_by_name output_name
+      
       # set the weighting
       @weighting = case weighting_name
         # add the option to set the weighting later
@@ -69,10 +61,18 @@ module Rubella
 
     # Set the input type by the given name
     #
-    # @param string Name of the input type in CamelCase
+    # @param input_name string Name of the input type in CamelCase
+    # @raise NotImplementedError
     def input_by_name input_name
-      # Remove the input, if someone wants to do this
       @input = load_by_name "Input", input_name
+    end
+
+    # Set the output type by the given name
+    #
+    # @param output_name string Name of the output type in CamelCase
+    # @raise NotImplementedError
+    def output_by_name output_name
+      @output = load_by_name "Output", output_name
     end
 
     # Loads and returns the given class
@@ -95,11 +95,6 @@ module Rubella
 
       # TODO raise this error, if input class is not found
       # raise NotImplementedError, "Not supported input type "+input_name+" given"
-    end
-
-    def output_image
-      require "rubella/output/image"
-      Output::Image
     end
 
     def weighting_per_value
