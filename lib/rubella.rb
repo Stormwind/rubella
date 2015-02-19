@@ -12,21 +12,9 @@ module Rubella
 
       # set the output type
       output_by_name output_name
-      
+
       # set the weighting
-      @weighting = case weighting_name
-        # add the option to set the weighting later
-        when nil then
-          nil
-        when "per_value" then
-          self.weighting_per_value
-        when "per_overall_load" then
-          self.weighting_per_overall_load
-        when "expotential" then
-          self.weighting_expotential
-        else
-          raise NotImplementedError, "Not supported weighting type "+weighting_name+" given"
-      end
+      weighting_by_name weighting_name
 
     end
 
@@ -75,6 +63,14 @@ module Rubella
       @output = load_by_name "Output", output_name
     end
 
+    # Set the weighting type by the given name
+    #
+    # @param weighting_name string Name of the weighting type in CamelCase
+    # @raise NotImplementedError
+    def weighting_by_name weighting_name
+      @weighting = load_by_name "Weighting", weighting_name
+    end
+
     # Loads and returns the given class
     #
     # @param module_name string The Name of the module in CamelCase
@@ -88,28 +84,23 @@ module Rubella
       end
 
       # Try to load the given class
-      require "rubella/"+module_name.downcase+"/"+class_name.downcase
+      require "rubella/"+underscore(module_name)+"/"+underscore(class_name)
 
       # Try to get a class by the given name
       return Object.const_get("Rubella").const_get(module_name).const_get(class_name)
 
-      # TODO raise this error, if input class is not found
+      # TODO raise this error, if class is not found
       # raise NotImplementedError, "Not supported input type "+input_name+" given"
     end
 
-    def weighting_per_value
-      require "rubella/weighting/per_value"
-      Weighting::PerValue
-    end
-
-    def weighting_per_overall_load
-      require "rubella/weighting/per_overall_load"
-      Weighting::PerOverallLoad
-    end
-
-    def weighting_expotential
-      require "rubella/weighting/expotential"
-      Weighting::Expotential
+    # Converts CamelCase words into snake_case
+    #
+    # @param camel_cased_word string Word in CamelCase
+    # @return string
+    def underscore(camel_cased_word)
+      camel_cased_word.to_s.gsub(/::/, '/').
+        gsub(/([A-Z]+)([A-Z][a-z])/,'\1_\2').gsub(/([a-z\d])([A-Z])/,'\1_\2').
+        tr("-", "_").downcase
     end
 
   end
