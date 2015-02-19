@@ -1,10 +1,19 @@
 module Rubella
 
+  # Helps to process and create the heatmap
+  #
   class Map
     attr_reader :input
     attr_reader :output
     attr_reader :weighting
 
+    # Constructor
+    #
+    # @param input_name string Name of the input type in CamelCase
+    # @param output_name string Name of the output type in CamelCase
+    # @param weighting_name string Name of the weighting type in CamelCase
+    # @return Rubella::Map
+    # @raise NotImplementedError
     def initialize(input_name, output_name, weighting_name)
 
       # set the input type
