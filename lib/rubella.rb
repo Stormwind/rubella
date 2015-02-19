@@ -8,15 +8,7 @@ module Rubella
     def initialize(input_name, output_name, weighting_name)
 
       # set the input type
-      @input = case input_name
-        # add the option to set input later
-        when nil then
-          nil
-        when "json" then
-          self.input_json
-        else
-          raise NotImplementedError, "Not supported input type "+input_name+" given"
-      end
+      input_by_name input_name
 
       # set the output type
       @output = case output_name
@@ -75,9 +67,24 @@ module Rubella
       outpt.create weight.parse(inpt)
     end
 
-    def input_json
-      require "rubella/input/json"
-      Input::JSON
+    # Set the input type by the given name
+    #
+    # @param string Name of the input type in CamelCase
+    def input_by_name input_name
+      # Remove the input, if someone wants to do this
+      if input_name == nil or input_name == ""
+        @input = nil
+        return
+      end
+
+      # Try to load the given class
+      require "rubella/input/"+input_name.downcase
+
+      # Try to get a class by the given name
+      @input = Object.const_get("Rubella").const_get("Input").const_get(input_name)
+
+      # TODO raise this error, if input class is not found
+      # raise NotImplementedError, "Not supported input type "+input_name+" given"
     end
 
     def output_image
