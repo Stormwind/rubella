@@ -3,10 +3,16 @@ module Rubella
 
     class ASCII
       SHADE_0 = " "
-      SHADE_1 = "░"
-      SHADE_2 = "▒"
-      SHADE_3 = "▓"
-      SHADE_4 = "█"
+      SHADE_1 = "·"
+      SHADE_2 = "⚬"
+      SHADE_3 = "∞"
+      SHADE_4 = "≈"
+      SHADE_5 = "#"
+      SHADE_6 = "░"
+      SHADE_7 = "▒"
+      SHADE_8 = "▓"
+      SHADE_9 = "█"
+
 
       def initialize field_size = 1
         @field_size = field_size
@@ -30,16 +36,26 @@ module Rubella
             part = (part*100).to_i
 
             case part
-              when 0..20 then
+              when  0..10 then
                 ascii_arr[i] << SHADE_0
-              when 21..40 then
+              when 11..20 then
                 ascii_arr[i] << SHADE_1
-              when 41..60 then
+              when 21..30 then
                 ascii_arr[i] << SHADE_2
-              when 61..80 then
+              when 31..40 then
                 ascii_arr[i] << SHADE_3
-              else
+              when 41..50 then
                 ascii_arr[i] << SHADE_4
+              when 51..60 then
+                ascii_arr[i] << SHADE_5
+              when 61..70 then
+                ascii_arr[i] << SHADE_6
+              when 71..80 then
+                ascii_arr[i] << SHADE_7
+              when 81..90 then
+                ascii_arr[i] << SHADE_8
+              else
+                ascii_arr[i] << SHADE_9
             end
             i = i+1
           end
