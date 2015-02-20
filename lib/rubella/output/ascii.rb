@@ -6,7 +6,7 @@ module Rubella
       SHADE_1 = "·"
       SHADE_2 = "⚬"
       SHADE_3 = "∞"
-      SHADE_4 = "≈"
+      SHADE_4 = "@"
       SHADE_5 = "#"
       SHADE_6 = "░"
       SHADE_7 = "▒"
