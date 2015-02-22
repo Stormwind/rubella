@@ -17,7 +17,16 @@ module Rubella
                   [" ", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
         @field_size   = field_size
-        @used_symbols = "shades_ascii"
+        self.used_symbols = "shades_ascii"
+      end
+
+      def used_symbols= value
+        if @symbols.has_key? value
+          @used_symbols = value
+          return
+        end
+        raise ArgumentError, "Symbol set not found, must be one of: " +
+          @symbols.keys.join(", ")
       end
 
       def create parsed_list
@@ -50,7 +59,6 @@ module Rubella
 
         ascii_arr.join("\n")
       end
-
     end
 
   end
