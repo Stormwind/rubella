@@ -3,7 +3,13 @@ require 'json'
 module Rubella
   module Input
 
+    # Gets data in JSON formate and translate it into a Ruby readable form to
+    # make it possible to handle the data.
     #
+    # TODO The validation of the data should happen here
+    # Check if data is array, with subarrays. Check, that all sub array have
+    # the same size. Check that all the content are numeric values between 0
+    # and 100.
     #
     class JSON
       attr_reader :data
