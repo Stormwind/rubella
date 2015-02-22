@@ -2,14 +2,19 @@ module Rubella
   module Output
 
     class ASCII
+      attr_accessor :symbols
+      attr_reader   :used_symbols
 
       def initialize field_size = 1
         @symbols = Hash.new
-        #@symbols["shades"] =
+        @symbols["shades"]       = 
+                  [" ", " ", "░", "░", "▒", "▒", "▓", "▓", "█", "█"]
         @symbols["shades_ascii"] =
-                            [" ", "·", "⚬", "∞", "@", "#", "░", "▒", "▓", "█"]
-        #@symbols["ascii"]   =
-        #@symbols["numbers"] =
+                  [" ", "·", "⚬", "∞", "@", "#", "░", "▒", "▓", "█"]
+        @symbols["ascii"]       =
+                  [" ", "·", ",", ";", "o", "O", "%", "8", "@", "#"]
+        @symbols["numbers"] =
+                  [" ", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
         @field_size   = field_size
         @used_symbols = "shades_ascii"
@@ -30,7 +35,7 @@ module Rubella
         parsed_list.each do |point|
           i = 0
           point.reverse.each do |part|
-            part = (part*10).to_i          
+            part = (part*10).to_i       
 
             # Fix to prevent possible overflow.. should never happen, but we
             # are careful
