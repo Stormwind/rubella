@@ -30,30 +30,15 @@ module Rubella
         parsed_list.each do |point|
           i = 0
           point.reverse.each do |part|
-            part = (part*100).to_i          
+            part = (part*10).to_i          
 
-            case part
-              when  0..10 then
-                ascii_arr[i] << @symbols[@used_symbols][0]
-              when 11..20 then
-                ascii_arr[i] << @symbols[@used_symbols][1]
-              when 21..30 then
-                ascii_arr[i] << @symbols[@used_symbols][2]
-              when 31..40 then
-                ascii_arr[i] << @symbols[@used_symbols][3]
-              when 41..50 then
-                ascii_arr[i] << @symbols[@used_symbols][4]
-              when 51..60 then
-                ascii_arr[i] << @symbols[@used_symbols][5]
-              when 61..70 then
-                ascii_arr[i] << @symbols[@used_symbols][6]
-              when 71..80 then
-                ascii_arr[i] << @symbols[@used_symbols][7]
-              when 81..90 then
-                ascii_arr[i] << @symbols[@used_symbols][8]
-              else
-                ascii_arr[i] << @symbols[@used_symbols][9]
+            # Fix to prevent possible overflow.. should never happen, but we
+            # are careful
+            if part > 9
+              part = 9
             end
+
+            ascii_arr[i] << @symbols[@used_symbols][part]
             i = i+1
           end
         end
