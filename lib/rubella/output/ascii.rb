@@ -29,7 +29,8 @@ module Rubella
           @symbols.keys.join(", ")
       end
 
-      def create parsed_list
+      def create storage
+        parsed_list = storage.data
         buckets = parsed_list[0].length
         columns = parsed_list.length
 

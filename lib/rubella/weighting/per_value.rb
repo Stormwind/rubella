@@ -23,7 +23,6 @@ module Rubella
 
         # total amount of cores
         total_amount = data[0].length
-        # TODO check somewhere, if every dataset has the same amount of cores
 
         # prepare data
         data_list = Array.new()
@@ -38,7 +37,7 @@ module Rubella
           end
         end
 
-        data_list
+        Rubella::Storage.new data_list
       end
       
     end
