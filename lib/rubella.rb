@@ -1,3 +1,5 @@
+require "rubella/storage"
+
 module Rubella
 
   # Helps to process and create the heatmap
