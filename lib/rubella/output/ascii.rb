@@ -1,7 +1,9 @@
+require "rubella/output/base"
+
 module Rubella
   module Output
 
-    class ASCII
+    class ASCII < Base
       attr_accessor :symbols
       attr_reader   :used_symbols
 
@@ -16,8 +18,8 @@ module Rubella
         @symbols["numbers"] =
                   [" ", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
-        @field_size   = field_size
         self.used_symbols = "shades_ascii"
+        super field_size
       end
 
       def used_symbols= value
@@ -30,19 +32,18 @@ module Rubella
       end
 
       def create storage
-        parsed_list = storage.data
-        buckets = parsed_list[0].length
-        columns = parsed_list.length
+        buckets = storage.data[0].length
+        # columns = storage.data.length
 
         # image size
-        x = columns*@field_size
-        y = buckets*@field_size
+        # x = columns*@field_size
+        # y = buckets*@field_size
 
         # start drawing the damn thing
         ascii_arr = [] 
         0.upto(buckets).each { |i| ascii_arr[i] = "" }
 
-        parsed_list.each do |point|
+        storage.data.each do |point|
           i = 0
           point.reverse.each do |part|
             part = (part*10).to_i       
@@ -58,7 +59,7 @@ module Rubella
           end
         end
 
-        ascii_arr.join("\n")
+        @data = ascii_arr.join("\n")
       end
     end
 

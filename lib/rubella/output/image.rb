@@ -1,19 +1,14 @@
+require "rubella/output/base"
 require 'RMagick'
 
 module Rubella
   module Output
 
-    class Image
-      attr_accessor :field_size
-
-      def initialize field_size = 15
-        @field_size = field_size
-      end
+    class Image < Base
 
       def create storage
-        parsed_list = storage.data
-        buckets = parsed_list[0].length
-        columns = parsed_list.length
+        buckets = storage.data[0].length
+        columns = storage.data.length
 
         # image size
         x = columns*@field_size
@@ -23,7 +18,7 @@ module Rubella
         loadImg = Magick::Image.new(x, y) { self.background_color = "white" }
 
         i = 0
-        parsed_list.each do |point|
+        storage.data.each do |point|
           j = 0
           point.reverse.each do |part|
             # draw a red rectangle on the white background
@@ -45,7 +40,7 @@ module Rubella
           i = i + 1
         end
 
-        loadImg.display
+        @data = loadImg
       end
 
 
