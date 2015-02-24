@@ -17,6 +17,7 @@ module Rubella
       #
       # @param field_size int size of one value
       # @return Rubella::Output::Base
+      #
       def initialize field_size
         @field_size = field_size
       end
@@ -26,6 +27,7 @@ module Rubella
       #
       # @param storage Rubella::Storage
       # @return Rubella::Output::Base
+      #
       def create storage
         raise NotImplementedError "Please override 'create' in your concrete "+
           "implementation"
