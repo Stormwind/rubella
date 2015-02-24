@@ -17,7 +17,7 @@ module Rubella
       # Creates a new Rubella::Weighting::xy object.
       #
       # @param buckets int must be one of 1, 2, 5, 10, 20, 50 default is 10
-      # @return Rubella::Weighting::PerValue
+      # @return Rubella::Weighting::Base
       # @raise ArgumentError
       #
       def initialize(buckets = 10)
@@ -44,7 +44,7 @@ module Rubella
       # every time value unit.
       #
       # @param input Rubella::Input An input object
-      # @return Array
+      # @return Rubella::Storage
       #
       def parse input
         raise NotImplementedError "Please override 'parse' in your concrete "+
