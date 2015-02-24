@@ -15,7 +15,7 @@ module Rubella
       # every time value unit.
       #
       # @param input Rubella::Input An input object
-      # @return Array
+      # @return Rubella::Storage
       def parse input
         data = input.data
         # no data, no work
