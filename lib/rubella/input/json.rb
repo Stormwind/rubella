@@ -1,3 +1,4 @@
+require 'rubella/input/base'
 require 'json'
 
 module Rubella
@@ -6,13 +7,7 @@ module Rubella
     # Gets data in JSON formate and translate it into a Ruby readable form to
     # make it possible to handle the data.
     #
-    # TODO The validation of the data should happen here
-    # Check if data is array, with subarrays. Check, that all sub array have
-    # the same size. Check that all the content are numeric values between 0
-    # and 100.
-    #
-    class JSON
-      attr_reader :data
+    class JSON < Base
 
       # Constructor
       # This constructer can create a new Rubella::Input::JSON object, but it
@@ -21,6 +16,7 @@ module Rubella
       #
       # @param json__string string A string, which contains the data as json
       # @return Rubella::Input::JSON
+      #
       def initialize(json_string)
         @data = ::JSON::load(json_string)
       end
@@ -40,6 +36,7 @@ module Rubella
       #
       # @param json_file string The name of the file, which json contains
       # @return Rubella:Input::JSON
+      #
       def self.file(json_file)
         self.new File.new(json_file, 'r')
       end
