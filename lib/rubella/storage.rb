@@ -25,6 +25,16 @@ module Rubella
       # TODO drop entries, if more than new length
     end
 
+    # Adds the data from the given storage to the own data and return this as a
+    # new Storage. Does not modify one of the storages. 
+    # 
+    # @param storage Rubella::Storage Storage with new data
+    # @return Rubella::Storage
+    #
+    def add storage
+      Storage.new (storage.data+@data), @length
+    end
+
   end
 
 end
