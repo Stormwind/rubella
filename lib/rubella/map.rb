@@ -27,34 +27,6 @@ module Rubella
 
     end
 
-    # Creates a heatmap in the on construction given format. The data must be
-    # in the also on construction given formate.
-    #
-    # @param data string The data, which should be used
-    # @return binaryblob An output representation of the heatmap
-    def create_from_string data
-      process @input.string data
-    end
-
-    # Creates a heatmap in the on construction given format. The data must be
-    # in the also on construction given formate.
-    #
-    # @param file_name string  
-    # @return binaryblob An output representation of the heatmap
-    def create_from_file file_name
-      process @input.file file_name
-    end
-
-    # Processes the creation of the heatmap, after the construction of the input
-    # object. So the input object is given here as parameter.
-    #
-    # @param inpt Input The inputed data
-    # @return binaryblob An output representation of the heatmap
-    def process inpt
-      weight = @weighting.new 10
-      @output.new(weight.parse(inpt)).render
-    end
-
     # Set the input type by the given name
     #
     # @param input_name string Name of the input type in CamelCase
