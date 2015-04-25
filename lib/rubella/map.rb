@@ -52,8 +52,7 @@ module Rubella
     # @return binaryblob An output representation of the heatmap
     def process inpt
       weight = @weighting.new 10
-      outpt    = @output.new
-      outpt.create weight.parse(inpt)
+      @output.new(weight.parse(inpt)).render
     end
 
     # Set the input type by the given name

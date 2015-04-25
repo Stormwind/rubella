@@ -15,31 +15,31 @@ module Rubella
       # Constructor
       # Has a default field_size of 15 pixel.
       #
+      # @param data Rubella::Storage
       # @param field_size int How many pixel one value has
       # @return Rubella::Output::Image
       #
-      def initialize field_size = 15
-        super field_size
+      def initialize data, field_size = 15
+        super data, field_size
       end
 
-      # Creates a pixel based graphic from the given storage data.
+      # Creates a pixel based graphic.
       #
-      # @param storage Rubella::Storage
-      # @return Rubella::Output::Image
+      # @return RMagick::Image
       #
-      def create storage
-        buckets = storage.data[0].length
-        columns = storage.data.length
+      def render
+        buckets = @data.data[0].length
+        columns = @data.data.length
 
         # image size
         x = columns*@field_size
         y = buckets*@field_size
 
         # start drawing the damn thing
-        @data = Magick::Image.new(x, y) { self.background_color = "white" }
+        image = Magick::Image.new(x, y) { self.background_color = "white" }
 
         i = 0
-        storage.data.each do |point|
+        @data.data.each do |point|
           j = 0
           point.reverse.each do |part|
             # draw a red rectangle on the white background
@@ -55,13 +55,13 @@ module Rubella
             # Draw
             core.fill(Magick::Pixel.from_hsla(0, 255, l, 1).to_color)
             core.rectangle((i*@field_size), (j*@field_size), ((i+1)*@field_size), ((j+1)*@field_size))
-            core.draw @data
+            core.draw image
             j = j + 1
           end
           i = i + 1
         end
 
-        self
+        image
       end
 
 

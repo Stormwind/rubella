@@ -8,28 +8,27 @@ module Rubella
     #
     class Base
       attr_accessor :field_size
-      attr_reader   :data
 
       # Constructor
       # Gets the field size to store it local. It's the size of one value of
       # the later created visual representation. The unit depends on the kind
       # of representation.
       #
+      # @param data Rubella::Storage
       # @param field_size int size of one value
       # @return Rubella::Output::Base
       #
-      def initialize field_size
+      def initialize data, field_size
+        @data       = data
         @field_size = field_size
       end
 
-      # Creates a visual representation of the data in the given storage and
-      # stores this local.
+      # Creates a visual representation.
       #
-      # @param storage Rubella::Storage
-      # @return Rubella::Output::Base
+      # @return rendered data
       #
-      def create storage
-        raise NotImplementedError "Please override 'create' in your concrete "+
+      def render
+        raise NotImplementedError "Please override 'render' in your concrete "+
           "implementation"
       end
     end

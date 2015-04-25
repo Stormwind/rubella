@@ -23,10 +23,11 @@ module Rubella
       # Also sets the used ascii art theme to "shades_ascii". See the
       # used_symbols= for further information.
       #
+      # @param data Rubella::Storage
       # @param field_size int Used chars for one value
       # @return Rubella::Output::ASCII
       #
-      def initialize field_size = 1
+      def initialize data, field_size = 1
         @symbols = Hash.new
         @symbols["shades"]       = 
                   [" ", " ", "░", "░", "▒", "▒", "▓", "▓", "█", "█"]
@@ -38,7 +39,7 @@ module Rubella
                   [" ", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
         self.used_symbols = "shades_ascii"
-        super field_size
+        super data, field_size
       end
 
       # Sets the used ascii theme by the given name.
@@ -61,14 +62,13 @@ module Rubella
           @symbols.keys.join(", ")
       end
 
-      # Creates an ascii art representation of the given storage data.
+      # Creates an ascii art representation.
       #
-      # @param storage Rubella::Storage
-      # @return Rubella::Storage::ASCII
+      # @return String
       #
-      def create storage
-        buckets = storage.data[0].length
-        # columns = storage.data.length
+      def render
+        buckets = @data.data[0].length
+        # columns = @data.data.length
 
         # image size
         # x = columns*@field_size
@@ -78,7 +78,7 @@ module Rubella
         ascii_arr = [] 
         0.upto(buckets-1).each { |i| ascii_arr[i] = "" }
 
-        storage.data.each do |point|
+        @data.data.each do |point|
           i = 0
           point.reverse.each do |part|
             part = (part*10).to_i       
@@ -94,8 +94,7 @@ module Rubella
           end
         end
 
-        @data = ascii_arr.join("\n")
-        self
+        ascii_arr.join("\n")
       end
     end
 
