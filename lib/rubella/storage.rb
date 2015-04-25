@@ -22,7 +22,14 @@ module Rubella
     def length= length
       @length = length
 
-      # TODO drop entries, if more than new length
+      # Drop entries, if more than new length
+      if @length.kind_of? Integer
+        while @data.length > @length
+          @data.pop
+        end
+      end
+      
+      @length
     end
 
     # Adds the data from the given storage to the own data and return this as a
