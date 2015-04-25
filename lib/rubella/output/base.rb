@@ -28,8 +28,8 @@ module Rubella
       # @return rendered data
       #
       def render
-        raise NotImplementedError "Please override 'render' in your concrete "+
-          "implementation"
+        raise NotImplementedError.new "Please override 'render' in your "+
+          "concrete implementation"
       end
     end
 

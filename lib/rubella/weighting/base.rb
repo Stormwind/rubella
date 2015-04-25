@@ -47,8 +47,8 @@ module Rubella
       # @return Rubella::Storage
       #
       def parse input
-        raise NotImplementedError "Please override 'parse' in your concrete "+
-          "implementation"
+        raise NotImplementedError.new "Please override 'parse' in your "+
+          "concrete implementation"
       end
 
     end

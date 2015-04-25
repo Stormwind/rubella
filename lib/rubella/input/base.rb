@@ -21,7 +21,7 @@ module Rubella
       # @return Rubella::Input::Base
       #
       def self.string(value)
-        raise NotImplementedError "Please override 'self.string' in your "+
+        raise NotImplementedError.new "Please override 'self.string' in your "+
           "concrete implementation"
       end
 
@@ -33,7 +33,7 @@ module Rubella
       # @return Rubella:Input::Base
       #
       def self.file(file_name)
-        raise NotImplementedError "Please override 'self.file' in your "+
+        raise NotImplementedError.new "Please override 'self.file' in your "+
           "concrete implementation"
       end
 
