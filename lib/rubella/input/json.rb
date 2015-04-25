@@ -14,11 +14,11 @@ module Rubella
       # is supposed to be private. Please use Rubella::Input::JSON.string or
       # Rubella::Input::JSON.file to create a new instance.
       #
-      # @param json__string string A string, which contains the data as json
+      # @param json_string string A string, which contains the data as json
       # @return Rubella::Input::JSON
       #
-      def initialize(json_string)
-        @data = ::JSON::load(json_string)
+      def initialize json_string
+        @data = ::JSON::load json_string
       end
 
       # Constructor
@@ -26,8 +26,8 @@ module Rubella
       #
       # @param json_string string A string, which contains the data as json
       # @return Rubella::Input::JSON
-      def self.string(json_string)
-        self.new(json_string)
+      def self.string json_string
+        self.new json_string
       end
 
       # Constructor
@@ -37,8 +37,8 @@ module Rubella
       # @param json_file string The name of the file, which json contains
       # @return Rubella:Input::JSON
       #
-      def self.file(json_file)
-        self.new File.new(json_file, 'r')
+      def self.file json_file
+        self.new File.new json_file, 'r'
       end
 
     end

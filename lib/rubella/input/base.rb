@@ -20,7 +20,7 @@ module Rubella
       # @param value string A string, which contains the data
       # @return Rubella::Input::Base
       #
-      def self.string(value)
+      def self.string value
         raise NotImplementedError.new "Please override 'self.string' in your "+
           "concrete implementation"
       end
@@ -32,11 +32,14 @@ module Rubella
       # @param file_name string The name of the file
       # @return Rubella:Input::Base
       #
-      def self.file(file_name)
+      def self.file file_name
         raise NotImplementedError.new "Please override 'self.file' in your "+
           "concrete implementation"
       end
 
+      def each &block
+        @data.each &block
+      end
 
     end
 
