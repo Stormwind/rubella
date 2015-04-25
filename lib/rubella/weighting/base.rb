@@ -32,7 +32,8 @@ module Rubella
       def buckets= buckets
         # Must be divideable by 100
         if([1, 2, 5, 10, 20, 50].index(buckets) == nil)
-          raise ArgumentError, "Amount of buckets must be 1, 2, 5, 10, 20 or 50"
+          raise ArgumentError.new "Amount of buckets must be 1, 2, 5, 10, 20 "+
+            "or 50"
         end
         
         @steps   = 100/buckets
