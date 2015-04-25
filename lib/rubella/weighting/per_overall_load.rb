@@ -18,14 +18,10 @@ module Rubella
       # @param input Rubella::Input An input object
       # @return Rubella::Storage
       def parse input
-        data = input.data
-        # no data, no work
-        return [] if data.length == 0
-
         # prepare data
         data_list = Array.new()
 
-        data.each do |cores|
+        input.each do |cores|
 
           # Add all loads to compute how much % is one % load
           load_sum = 0

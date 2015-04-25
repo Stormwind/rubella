@@ -20,7 +20,7 @@ module Rubella
       # @return Rubella::Weighting::Base
       # @raise ArgumentError
       #
-      def initialize(buckets = 10)
+      def initialize buckets = 10
         self.buckets = buckets
       end
 
@@ -31,7 +31,7 @@ module Rubella
       #
       def buckets= buckets
         # Must be divideable by 100
-        if([1, 2, 5, 10, 20, 50].index(buckets) == nil)
+        if [1, 2, 5, 10, 20, 50].index(buckets) == nil
           raise ArgumentError.new "Amount of buckets must be 1, 2, 5, 10, 20 "+
             "or 50"
         end

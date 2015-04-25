@@ -4,7 +4,7 @@ module Rubella
   module Weighting
 
     # The Rubella::Weighting::PerValue object weights every bucket set to 1 in
-    # ammount. So if you have have for example four cores, every core is
+    # amount. So if you have have for example four cores, every core is
     # weighted to 0.25 no matter how much the load of a single core is. It's
     # just a "as is" weighting.
     #
@@ -17,17 +17,12 @@ module Rubella
       # @param input Rubella::Input An input object
       # @return Rubella::Storage
       def parse input
-        data = input.data
-        # no data, no work
-        return [] if data.length == 0
-
-        # total amount of cores
-        total_amount = data[0].length
-
         # prepare data
         data_list = Array.new()
+        total_amount = nil
 
-        data.each do |cores|
+        input.each do |cores|
+          total_amount = cores.length if total_amount.nil?
           # every 10 load percent one heatpoint
           i = 0
           data_list << Array.new(buckets) do

@@ -17,18 +17,13 @@ module Rubella
       # @param input Rubella::Input An input object
       # @return Rubella::Storage
       def parse input
-        data = input.data
-        # no data, no work
-        return [] if data.length == 0
-
-        # total amount of cores
-        total_amount = data[0].length
-
         # prepare data
-        data_list = Array.new()
-        bucket_no = 0
+        data_list    = Array.new()
+        bucket_no    = 0
+        total_amount = nil
 
-        data.each do |cores|
+        input.each do |cores|
+          total_amount = cores.length if total_amount.nil?
           # every 10 load percent one heatpoint
           i = 0
           data_list << Array.new(buckets) do
