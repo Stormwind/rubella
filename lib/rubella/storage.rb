@@ -8,7 +8,7 @@ module Rubella
   #
   class Storage
     attr_reader :data
-    attr_reader :length
+    # :length
 
     def initialize data, length = 0
       @data       = data
@@ -31,19 +31,39 @@ module Rubella
       @length = length
 
       # Use length only, if length is valid
-      if @length != 0 and @data.length != 0
+      if @length != 0 and self.length != 0
         # Drop entries, if more than new length
-        while @data.length > @length
+        while self.length > @length
           @data.pop
         end
         # Prefill with empty content, if less than new length
-        dummy_data = Array.new(@data[0].length, 0)
-        while @data.length < @length
+        dummy_data = Array.new(self.dataset_length, 0)
+        while self.length < @length
           @data.unshift dummy_data
         end
       end
       
       @length
+    end
+
+    # Returns the current length of the storage.
+    # (How many datasets it holds.)
+    #
+    # @return Integer length
+    #
+    def length
+      @data.length
+    end
+
+    # Returns the length of a dataset.
+    # Will return 0, if no datasets in storage.
+    #
+    # @return Integer length of one dataset
+    #
+    def dataset_length
+      return 0 if self.length == 0
+
+      @data[0].length
     end
 
     # Adds the data from the given storage to the own data and return this as a
