@@ -67,8 +67,8 @@ module Rubella
       # @return String
       #
       def render
-        buckets = @data.data[0].length
-        # columns = @data.data.length
+        buckets = @data.dataset_length
+        # columns = @data.length
 
         # image size
         # x = columns*@field_size
@@ -78,7 +78,7 @@ module Rubella
         ascii_arr = [] 
         0.upto(buckets-1).each { |i| ascii_arr[i] = "" }
 
-        @data.data.each do |point|
+        @data.each do |point|
           i = 0
           point.reverse.each do |part|
             part = (part*10).to_i       

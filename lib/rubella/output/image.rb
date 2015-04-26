@@ -28,8 +28,8 @@ module Rubella
       # @return RMagick::Image
       #
       def render
-        buckets = @data.data[0].length
-        columns = @data.data.length
+        buckets = @data.dataset_length
+        columns = @data.length
 
         # image size
         x = columns*@field_size
@@ -39,7 +39,7 @@ module Rubella
         image = Magick::Image.new(x, y) { self.background_color = "white" }
 
         i = 0
-        @data.data.each do |point|
+        @data.each do |point|
           j = 0
           point.reverse.each do |part|
             # draw a red rectangle on the white background
