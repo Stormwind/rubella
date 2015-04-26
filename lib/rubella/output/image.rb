@@ -28,12 +28,9 @@ module Rubella
       # @return RMagick::Image
       #
       def render
-        buckets = @data.dataset_length
-        columns = @data.length
-
         # image size
-        x = columns*@field_size
-        y = buckets*@field_size
+        x = @data.length*@field_size         # columns x field_size
+        y = @data.dataset_length*@field_size # buckets x field_size
 
         # start drawing the damn thing
         image = Magick::Image.new(x, y) { self.background_color = "white" }
