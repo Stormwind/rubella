@@ -19,16 +19,14 @@ module Rubella
       def parse input
         # prepare data
         data_list = Array.new()
-        total_amount = nil
 
         input.each do |cores|
-          total_amount = cores.length if total_amount.nil?
           # every 10 load percent one heatpoint
           i = 0
           data_list << Array.new(buckets) do
             amount = cores.select { |core| core >= i and core < (i+@steps)}.length
             i = i + @steps
-            amount.to_f/total_amount
+            amount.to_f/cores.length
           end
         end
 

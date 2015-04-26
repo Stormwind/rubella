@@ -20,16 +20,14 @@ module Rubella
         # prepare data
         data_list    = Array.new()
         bucket_no    = 0
-        total_amount = nil
 
         input.each do |cores|
-          total_amount = cores.length if total_amount.nil?
           # every 10 load percent one heatpoint
           i = 0
           data_list << Array.new(buckets) do
             amount    = cores.select { |core| core >= i and core < (i+@steps)}.length
             i         = i + @steps
-            core      = (amount.to_f*bucket_no**0.8)/total_amount
+            core      = (amount.to_f*bucket_no**0.8)/cores.length
             bucket_no = bucket_no + 1
 
             core
