@@ -37,6 +37,10 @@ module Rubella
           "concrete implementation"
       end
 
+      # Passes each dataset trought the given block.
+      #
+      # @param pointer to block
+      #
       def each &block
         @data.each &block
       end
