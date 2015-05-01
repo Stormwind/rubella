@@ -77,7 +77,7 @@ module Rubella
       Storage.new (storage.data+@data), @length
     end
 
-    # Passes each dataset trought the given block.
+    # Passes each dataset through the given block.
     #
     # @param pointer to block
     #
