@@ -62,6 +62,7 @@ module Rubella
     #
     def dataset_length
       return 0 if self.length == 0
+      return 1 unless @data[0].respond_to? "length"
 
       @data[0].length
     end
