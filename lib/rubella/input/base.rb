@@ -9,6 +9,16 @@ module Rubella
     class Base
       attr_reader :data
 
+      # Constructor
+      # Create a new Rubella::Input::Base object using the given data
+      #
+      # @param var Input data
+      # @return Rubell::Input::Base
+      #
+      def initialize data
+        @data = data
+      end
+
       # Passes each dataset trought the given block.
       #
       # @param pointer to block
