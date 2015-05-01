@@ -49,6 +49,8 @@ module Rubella
     # Returns the current length of the storage.
     # (How many datasets it holds.)
     #
+    # TODO Throw an error, if data has different lengths
+    #
     # @return Integer length
     #
     def length
