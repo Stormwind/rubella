@@ -7,3 +7,5 @@ if ENV['SIMPLECOV']
 end
 
 require 'rubella'
+require 'rubella/storage'
+require 'rubella/input/json'
