@@ -24,6 +24,8 @@ module Rubella
     #
     # Setting the length to 0 will disable this feature
     #
+    # TODO fill up with 0 values, if data is not multidemensional
+    #
     # @param length Integer The size of the storage
     # @return Integer The new size
     #
