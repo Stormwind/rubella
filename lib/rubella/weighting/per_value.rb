@@ -24,8 +24,12 @@ module Rubella
           # every 10 load percent one heatpoint
           i = 0
           data_list << Array.new(buckets) do
-            amount = cores.select { |core| core >= i and core < (i+@steps)}.length
-            i = i + @steps
+            current_cores = cores.select do |core|
+              core >= i and
+                ((core < (i+@steps)) or (core <= (i+@steps) and i+@steps == 100))
+            end
+            amount = current_cores.length
+            i      = i + @steps
             amount.to_f/cores.length
           end
         end

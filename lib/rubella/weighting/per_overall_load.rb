@@ -32,7 +32,10 @@ module Rubella
           i = 0
           data_list << Array.new(buckets) do
             # Select all current cores
-            selected_cores = cores.select { |core| core >= i and core < (i+@steps)}
+            selected_cores = cores.select do |core|
+              core >= i and
+                ((core < (i+@steps)) or (core <= (i+@steps) and i+@steps == 100))
+            end
             i = i + @steps
 
             # add the load of the resulting cores and multiply it with the overall value
