@@ -3,12 +3,12 @@ require "rubella/weighting/base"
 module Rubella
   module Weighting
 
-    # The Rubella::Weighting::Expotential object weights every bucket per
+    # The Rubella::Weighting::Exponential object weights every bucket per
     # amount of cores. But the cores with higher load get a visualisation
-    # boost, which is expotential. So one high load core, will have much more
+    # boost, which is exponential. So one high load core, will have much more
     # color, than serveral less load cores.
     #
-    class Expotential < Base
+    class Exponential < Base
 
       # Creates a output readable list.
       # This list is Array within a subarrays, which contain the buckets for
