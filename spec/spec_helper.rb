@@ -8,4 +8,5 @@ end
 
 require 'rubella'
 require 'rubella/storage'
+require 'rubella/input/base'
 require 'rubella/input/json'
