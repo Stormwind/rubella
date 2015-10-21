@@ -40,6 +40,8 @@ module Rubella
 
         # Get the maximum of commits
         max = input.sort.pop
+        # Sets maximum to 1 if its 0 to avoid division by zero
+        max = 1 if max == 0
 
         i = 0
         input.each do |commits|

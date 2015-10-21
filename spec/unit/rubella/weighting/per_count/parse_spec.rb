@@ -40,4 +40,22 @@ describe Rubella::Weighting::PerCount, '.parse' do
     )
   end
 
+  it "writes 0 if value is 0" do
+    input = [0, 2, 1, 3, 1, 4, 5, 2, 1, 2, 3, 4, 2, 1]
+    weighting = Rubella::Weighting::PerCount.new 7
+
+    storage = weighting.parse(input)
+
+    expect(storage.data[0][0]).to eq(0.0)
+  end
+
+  it "sets 0 to 0 even if the maximum value is 0" do
+    input = [0, 0, 0, 0]
+    weighting = Rubella::Weighting::PerCount.new 2
+    
+    storage = weighting.parse(input)
+
+    expect(storage.data[0][0]).to eq(0.0)
+  end
+
 end
