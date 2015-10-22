@@ -42,12 +42,12 @@ module Rubella
             # draw a red rectangle on the white background
             core = Magick::Draw.new
 
-            idensity = 127.5 * part
+            intensity = 127.5 * part
             # Fix for float stupidity
-            idensity = 127.5 if idensity > 127.5
+            intensity = 127.5 if intensity > 127.5
 
             # Get the correct value
-            l = (255-idensity).round
+            l = (255-intensity).round
 
             # Draw
             core.fill(Magick::Pixel.from_hsla(0, 255, l, 1).to_color)
