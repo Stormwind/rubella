@@ -1,5 +1,5 @@
 require "rubella/output/base"
-require 'RMagick'
+require 'rmagick'
 
 module Rubella
   module Output
@@ -33,7 +33,7 @@ module Rubella
         y = @data.dataset_length*@field_size # buckets x field_size
 
         # start drawing the damn thing
-        image = Magick::Image.new(x, y) { self.background_color = "white" }
+        image = Magick::Image.new(x, y) { self.background_color = "lime" }
 
         i = 0
         @data.each do |point|
