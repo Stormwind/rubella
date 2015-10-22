@@ -33,9 +33,9 @@ module Rubella
                   [" ", " ", "░", "░", "▒", "▒", "▓", "▓", "█", "█"]
         @symbols["shades_ascii"] =
                   [" ", "·", "⚬", "∞", "@", "#", "░", "▒", "▓", "█"]
-        @symbols["ascii"]       =
+        @symbols["ascii"]        =
                   [" ", "·", ",", ";", "o", "O", "%", "8", "@", "#"]
-        @symbols["numbers"] =
+        @symbols["numbers"]      =
                   [" ", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
         self.used_symbols = "shades_ascii"

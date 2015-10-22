@@ -54,4 +54,3 @@ end
 class Rubella::Output::AsciiImplementation < Rubella::Output::Base
   attr_reader :data
 end
-
