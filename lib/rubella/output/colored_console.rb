@@ -43,7 +43,7 @@ module Rubella
             when 9 then 88
           end
 
-          "\033[38;5;"+color.to_s+";48;5;16m█\033[m"
+          "\033[38;5;"+color.to_s+";48;5;"+color.to_s+"m█\033[m"
         end
 
         self.used_symbols = "colored_fields"
