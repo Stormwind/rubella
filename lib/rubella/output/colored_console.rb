@@ -29,28 +29,37 @@ module Rubella
         super data, field_size
 
         @symbols = Hash.new
-        @symbols["colored_fields"] = Array.new(10) do |i|
-          color = case i
-            when 0 then 35+196
-            when 1 then 29+196
-            when 2 then 23+196
-            when 3 then 17+196
-            when 4 then 11+196
-            when 5 then 5+196
-            when 6 then 196
-            when 7 then 160
-            when 8 then 124
-            when 9 then 88
-          end
-
-          "\033[38;5;"+color.to_s+";48;5;"+color.to_s+"m█\033[m"
-        end
+        @symbols["colored_fields"] = self.create_colors [
+            35+196,
+            24+196,
+            18+196,
+            12+196,
+            6+196,
+            196,
+            160,
+            124,
+            88,
+            52
+          ]
 
         self.used_symbols = "colored_fields"
       end
 
+      # Gets a string of 8-bit color codes and translates them into color
+      # commands for the shell.
+      #
+      # @param codes Array
+      # @return Array
+      #
+      def create_colors codes
+        colors = []
+        codes.each do |code|
+          colors << "\033[38;5;"+code.to_s+";48;5;"+code.to_s+"m█\033[m"
+        end
+
+        colors
+      end
 
     end
-
   end
 end
