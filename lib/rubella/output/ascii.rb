@@ -30,7 +30,7 @@ module Rubella
       def initialize data, field_size = 1
         @symbols = Hash.new
         @symbols["shades"]       = 
-                  [" ", " ", "░", "░", "▒", "▒", "▓", "▓", "█", "█"]
+                  [" ", "░", "▒", "▓", "█"]
         @symbols["shades_ascii"] =
                   [" ", "·", "⚬", "∞", "@", "#", "░", "▒", "▓", "█"]
         @symbols["ascii"]        =
@@ -53,6 +53,7 @@ module Rubella
       #   * shades_ascii
       #   * ascii
       #   * numbers
+      #   * letters
       #
       # @param value String The theme name
       # @raise ArgumentError
