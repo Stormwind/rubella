@@ -37,6 +37,10 @@ module Rubella
                   [" ", "·", ",", ";", "o", "O", "%", "8", "@", "#"]
         @symbols["numbers"]      =
                   [" ", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+        @symbols["letters"]      =
+                  [" ", "a", "b", "c", "d", "e", "f", "g", "h",
+                   "i", "j", "k", "l", "m", "n", "o", "p", "q",
+                   "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 
         self.used_symbols = "shades_ascii"
         super data, field_size
@@ -81,12 +85,12 @@ module Rubella
         @data.each do |point|
           i = 0
           point.reverse.each do |part|
-            part = (part*10).to_i       
+            part = (part*@symbols[@used_symbols].length).to_i
 
             # Fix to prevent possible overflow.. should never happen, but we
             # are careful
-            if part > 9
-              part = 9
+            if part > (@symbols[@used_symbols].length-1)
+              part = (@symbols[@used_symbols].length-1)
             end
 
             ascii_arr[i] << @symbols[@used_symbols][part]
