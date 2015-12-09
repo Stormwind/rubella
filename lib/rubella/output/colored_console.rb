@@ -34,6 +34,13 @@ module Rubella
           240, 241, 242, 243, 244, 245, 246, 247,
           248, 249, 250, 251, 252, 253, 254, 255
         ]
+        @symbols["green_to_red"] = self.create_colors [
+          231, # white
+          194, 157, 120, 83, 46, 40, 76, 113, 149, 185, # green
+          230, 230, # yellow (mean)
+          114, 208, 202, # orange
+          196, 196, 160, 160, 124, 88, 52  #red
+        ]
         @symbols["colored_fields"] = self.create_colors [
             35+196,
             24+196,
